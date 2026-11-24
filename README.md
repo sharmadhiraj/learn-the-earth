@@ -5,7 +5,9 @@ A tiny neural network learns where land and water are, live in your browser.
 It gets only a latitude and a longitude and answers one question: land or water? Train it on random points of the
 real Earth and watch the map sharpen from a grey blur into continents and coastlines.
 
-**[Try the live demo](https://sharmadhiraj.github.io/learn-the-earth/)**
+[![The map sharpening as the network trains](docs/demo.gif)](https://sharmadhiraj.github.io/learn-the-earth/)
+
+**[Try the live demo](https://sharmadhiraj.github.io/learn-the-earth/)** | [Source](https://github.com/sharmadhiraj/learn-the-earth)
 
 Inspired by [How does a blind model see the earth?](https://www.lesswrong.com/posts/xwdRzJxyqFqgXTWbH/how-does-a-blind-model-see-the-earth).
 
