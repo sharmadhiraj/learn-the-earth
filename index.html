@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn the Earth</title>
+  <meta name="description" content="A tiny neural network learns where land and water are from latitude and longitude alone, live in your browser.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Learn the Earth</h1>
+      <p>A tiny neural network is given only a latitude and a longitude and asked: land or water? Press play and watch
+        it redraw the world.</p>
+    </header>
+
+    <section class="maps" aria-label="Maps">
+      <figure>
+        <canvas id="learned-map" aria-label="Map learned by the network"></canvas>
+        <figcaption>Learned by the network</figcaption>
+      </figure>
+      <figure>
+        <canvas id="truth-map" aria-label="True map of land and water"></canvas>
+        <figcaption>Truth</figcaption>
+      </figure>
+      <figure>
+        <canvas id="error-map" class="error-map" aria-label="Map of the network's mistakes"></canvas>
+        <figcaption><span class="dot red"></span>thinks land, is water <span class="dot blue"></span>thinks water, is land</figcaption>
+      </figure>
+    </section>
+
+    <section class="stats" aria-label="Training progress">
+      <div><span class="label">Step</span><strong id="step">0</strong></div>
+      <div><span class="label">Accuracy</span><strong id="accuracy">0%</strong></div>
+      <div><span class="label">Loss</span><strong id="loss">0</strong></div>
+    </section>
+
+    <section class="charts" aria-label="Charts">
+      <figure>
+        <canvas id="accuracy-chart" aria-label="Held-out accuracy over time"></canvas>
+        <figcaption>Accuracy on unseen points</figcaption>
+      </figure>
+      <figure>
+        <canvas id="loss-chart" aria-label="Held-out loss over time"></canvas>
+        <figcaption>Loss on unseen points</figcaption>
+      </figure>
+    </section>
+
+    <section class="controls" aria-label="Controls">
+      <div class="buttons">
+        <button id="play" type="button">Play</button>
+        <button id="reset" type="button">Reset</button>
+      </div>
+      <label>Fourier bands <output id="fourier-value">6</output>
+        <input id="fourier" type="range" min="0" max="8" step="1" value="6">
+      </label>
+      <label>Hidden size
+        <select id="hidden-size">
+          <option>16</option><option>32</option><option selected>64</option><option>128</option>
+        </select>
+      </label>
+      <label>Hidden layers
+        <select id="hidden-layers">
+          <option>1</option><option selected>2</option><option>3</option><option>4</option>
+        </select>
+      </label>
+      <label>Learning rate
+        <select id="learning-rate">
+          <option>0.0003</option><option>0.001</option><option selected>0.003</option><option>0.01</option>
+        </select>
+      </label>
+      <label class="check"><input id="sharp" type="checkbox"> Sharper map (slower)</label>
+    </section>
+
+    <section class="explainer">
+      <h2>What am I looking at?</h2>
+      <ul>
+        <li>Each step, the network sees a few hundred random places on Earth, each labelled land or water, and nudges
+          its weights to guess better.</li>
+        <li><strong>Fourier bands</strong> turn the two coordinates into many waves of different sizes. Set it to 0 and
+          the network can only draw blurry blobs. Raise it and coastlines appear.</li>
+        <li>Accuracy and loss are measured on 5000 places the network never trains on.</li>
+      </ul>
+      <p><a href="https://github.com/sharmadhiraj/learn-the-earth/blob/main/docs/how-it-works.md">Full explanation and source</a></p>
+    </section>
+  </main>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

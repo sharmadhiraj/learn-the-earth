@@ -1,0 +1,8 @@
+{
+  "name": "learn-the-earth",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/net.test.mjs"
+  }
+}
